@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import java.util.Map;
 
-public class commonSharedPref {
+public class CommonSharedPref {
 
     public static final String PREFS_STORAGE = "FLICKR_preference_file";
 
