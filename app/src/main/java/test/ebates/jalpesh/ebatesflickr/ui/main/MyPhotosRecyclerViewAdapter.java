@@ -42,7 +42,7 @@ public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRe
         holder.mItem = mValues.get(position);
         Picasso.with(activityContext).load(holder.mItem.getPhotoUrl(AppConstants.IMAGE_SIZE_CONSTANTS.MEDIUM_IMAGE_SIZE)).into(holder.mIdView);
         //holder.mIdView.setText(mValues.get(position).id);
-        //holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).getTitle());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

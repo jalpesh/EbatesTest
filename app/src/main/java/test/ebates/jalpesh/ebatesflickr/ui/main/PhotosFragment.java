@@ -1,17 +1,22 @@
 package test.ebates.jalpesh.ebatesflickr.ui.main;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import de.greenrobot.event.EventBus;
+import test.ebates.jalpesh.ebatesflickr.MainActivity;
 import test.ebates.jalpesh.ebatesflickr.R;
 import test.ebates.jalpesh.ebatesflickr.helpers.DataFetchHelper;
 import test.ebates.jalpesh.ebatesflickr.models.Photo;
@@ -70,6 +75,24 @@ public class PhotosFragment extends Fragment {
             myPhotosRecyclerViewAdapter = new MyPhotosRecyclerViewAdapter(DataFetchHelper.getInstance(this.getContext()).getLocalPhotosCache().getPhotos().getPhotoList(), mListener, getActivity());
 
             recyclerView.setAdapter(myPhotosRecyclerViewAdapter);
+
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if (dy > 0) {
+                        ((MainActivity) getActivity()).animateUpImage();
+                    } else {
+                        ((MainActivity) getActivity()).animateDownImage();
+                    }
+                }
+            });
+
         }
         return view;
     }
