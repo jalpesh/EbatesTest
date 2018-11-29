@@ -101,6 +101,12 @@ public class PhotosFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mListener = new OnListFragmentInteractionListener() {
+            @Override
+            public void onListFragmentInteraction(Photo item) {
+                ((MainActivity)getActivity()).LaunchSingleView(item);
+            }
+        };
     }
 
     @Override
@@ -120,7 +126,6 @@ public class PhotosFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Photo item);
     }
 

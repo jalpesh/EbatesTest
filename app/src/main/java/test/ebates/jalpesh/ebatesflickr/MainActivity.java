@@ -7,24 +7,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import de.greenrobot.event.EventBus;
 import test.ebates.jalpesh.ebatesflickr.helpers.DataFetchHelper;
+import test.ebates.jalpesh.ebatesflickr.models.Photo;
 import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
 import test.ebates.jalpesh.ebatesflickr.ui.main.PhotosFragment;
+import test.ebates.jalpesh.ebatesflickr.ui.main.SinglePhotoFragment;
+import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements PhotosFragment.OnListFragmentInteractionListener  {
 
     boolean imageIsHidden = false;
     ImageView titleImageView;
     private ValueAnimator mAnimator;
-
+    ProgressBar waitForLoader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
         titleImageView = this.findViewById(R.id.img_item_image);
+        waitForLoader = this.findViewById(R.id.waiting_progress_bar);
 
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
@@ -46,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onEventMainThread(RefreshDataEvent refreshDataEvent) {
+        waitForLoader.setVisibility(View.GONE);
+        this.findViewById(R.id.container).setVisibility(View.VISIBLE);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, PhotosFragment.newInstance(1))
                 .commitNow();
@@ -118,4 +126,26 @@ public class MainActivity extends AppCompatActivity {
         return mAnimator;
     }
 
+    @Override
+    public void onListFragmentInteraction(Photo item) {
+
+        LaunchSingleView(item);
+
+    }
+
+    public void LaunchSingleView(Photo item){
+        SinglePhotoFragment singlePhotoFragment = new SinglePhotoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppConstants.COMMON_CONSTANTS.PHOTO_PARCEL, item);
+        singlePhotoFragment.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, singlePhotoFragment)
+                .commitAllowingStateLoss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

@@ -1,6 +1,8 @@
 
 package test.ebates.jalpesh.ebatesflickr.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.Switch;
 
 import com.google.gson.annotations.Expose;
@@ -8,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 
-public class Photo {
+public class Photo implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -37,6 +39,30 @@ public class Photo {
     @SerializedName("isfamily")
     @Expose
     private long isfamily;
+
+    protected Photo(Parcel in) {
+        id = in.readString();
+        owner = in.readString();
+        secret = in.readString();
+        server = in.readString();
+        farm = in.readLong();
+        title = in.readString();
+        ispublic = in.readLong();
+        isfriend = in.readLong();
+        isfamily = in.readLong();
+    }
+
+    public static final Creator<Photo> CREATOR = new Creator<Photo>() {
+        @Override
+        public Photo createFromParcel(Parcel in) {
+            return new Photo(in);
+        }
+
+        @Override
+        public Photo[] newArray(int size) {
+            return new Photo[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -159,4 +185,21 @@ public class Photo {
         return String.format(AppConstants.API_CONSTANTS.FLICKR_IMAGE_URL_CONSTRUCTOR, getFarm(), getServer(), getId(), getSecret(), imageSize);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(owner);
+        dest.writeString(secret);
+        dest.writeString(server);
+        dest.writeLong(farm);
+        dest.writeString(title);
+        dest.writeLong(ispublic);
+        dest.writeLong(isfriend);
+        dest.writeLong(isfamily);
+    }
 }

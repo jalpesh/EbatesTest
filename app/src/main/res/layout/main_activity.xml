@@ -17,14 +17,22 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:background="@drawable/ic_launcher_foreground"
+        android:background="@drawable/ic_flickr"
         android:contentDescription="@+string/empty"
         android:scaleType="centerCrop" />
 
+        <ProgressBar
+            android:id="@+id/waiting_progress_bar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="visible" />
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

@@ -17,7 +17,6 @@ public class AppConstants {
         //farm id :: server :: photoid :: secret :: size
         public static final String FLICKR_IMAGE_URL_CONSTRUCTOR = "https://farm%s.staticflickr.com/%s/%s_%s%s.jpg";
 
-
     }
 
     public static class IMAGE_SIZE_CONSTANTS {
@@ -30,4 +29,7 @@ public class AppConstants {
     }
 
 
+    public class COMMON_CONSTANTS {
+        public static final String PHOTO_PARCEL = "parcelKeyForPhotoModel";
+    }
 }
