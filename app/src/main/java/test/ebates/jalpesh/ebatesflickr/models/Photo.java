@@ -1,8 +1,12 @@
 
 package test.ebates.jalpesh.ebatesflickr.models;
 
+import android.widget.Switch;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 
 public class Photo {
 
@@ -149,6 +153,10 @@ public class Photo {
     public Photo withIsfamily(long isfamily) {
         this.isfamily = isfamily;
         return this;
+    }
+
+    public String getPhotoUrl(String imageSize){
+        return String.format(AppConstants.API_CONSTANTS.FLICKR_IMAGE_URL_CONSTRUCTOR, getFarm(), getServer(), getId(), getSecret(), imageSize);
     }
 
 }

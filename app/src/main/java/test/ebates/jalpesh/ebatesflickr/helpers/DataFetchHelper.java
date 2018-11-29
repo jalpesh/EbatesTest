@@ -3,11 +3,13 @@ package test.ebates.jalpesh.ebatesflickr.helpers;
 import android.content.Context;
 import android.util.Log;
 
+import de.greenrobot.event.EventBus;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import test.ebates.jalpesh.ebatesflickr.MainApplication;
 import test.ebates.jalpesh.ebatesflickr.models.FlickrPhotoHolder;
+import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
 import test.ebates.jalpesh.ebatesflickr.services.ApiUtils;
 import test.ebates.jalpesh.ebatesflickr.services.FlickrApiInterface;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
@@ -18,6 +20,7 @@ public class DataFetchHelper {
     FlickrApiInterface flickrApiInterface;
     static DataFetchHelper mInstance = null;
     private Context mContext;
+    FlickrPhotoHolder localPhotosCache = new FlickrPhotoHolder();
 
     private DataFetchHelper(Context context){
         mContext = context;
@@ -45,7 +48,12 @@ public class DataFetchHelper {
         flickrApiInterface.getRecents(currentPageNumber).enqueue(new Callback<FlickrPhotoHolder>() {
             @Override
             public void onResponse(Call<FlickrPhotoHolder> call, Response<FlickrPhotoHolder> response) {
-                Log.d("Response",response.body().getPhotos().toString());
+                //Log.d("Response",response.body().getPhotos().toString());
+                //check if more pages of data are available then load more
+                localPhotosCache = response.body();
+                //sennd evnt to UI to refresh layout adapter
+
+                EventBus.getDefault().post(new RefreshDataEvent());
             }
 
             @Override
@@ -54,6 +62,10 @@ public class DataFetchHelper {
             }
         });
 
+    }
+
+    public FlickrPhotoHolder getLocalPhotosCache(){
+        return localPhotosCache;
     }
 
 }

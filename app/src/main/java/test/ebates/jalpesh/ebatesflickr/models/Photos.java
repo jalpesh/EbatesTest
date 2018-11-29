@@ -75,7 +75,7 @@ public class Photos {
         return this;
     }
 
-    public List<Photo> getPhoto() {
+    public List<Photo> getPhotoList() {
         return photo;
     }
 
