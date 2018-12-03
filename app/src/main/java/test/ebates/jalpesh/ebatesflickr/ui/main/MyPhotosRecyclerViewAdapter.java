@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import test.ebates.jalpesh.ebatesflickr.MainApplication;
@@ -40,16 +42,26 @@ public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        Picasso.with(activityContext).load(holder.mItem.getPhotoUrl(AppConstants.IMAGE_SIZE_CONSTANTS.MEDIUM_IMAGE_SIZE)).into(holder.mIdView);
-        //holder.mIdView.setText(mValues.get(position).id);
+        Picasso.with(activityContext)
+                .load(holder.mItem.getPhotoUrl(AppConstants.IMAGE_SIZE_CONSTANTS.MEDIUM_IMAGE_SIZE))
+                .into(holder.mIdView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        holder.loader.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+                        holder.loader.setVisibility(View.GONE);
+                    }
+                });
+
         holder.mContentView.setText(mValues.get(position).getTitle());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
             }
@@ -65,6 +77,7 @@ public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRe
         public final View mView;
         public final ImageView mIdView;
         public final TextView mContentView;
+        public final ProgressBar loader;
         public Photo mItem;
 
         public ViewHolder(View view) {
@@ -72,6 +85,7 @@ public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRe
             mView = view;
             mIdView = (ImageView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
+            loader = (ProgressBar) view.findViewById(R.id.small_thumb_progress_bar);
         }
 
         @Override

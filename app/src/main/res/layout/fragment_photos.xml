@@ -11,6 +11,11 @@
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
+    <ProgressBar
+        android:id="@+id/small_thumb_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent" />
     <TextView
         android:id="@+id/content"
         android:layout_width="wrap_content"

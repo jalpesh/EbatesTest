@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -28,6 +29,7 @@ public class SinglePhotoFragment extends Fragment {
     ImageView fullScreenImage;
     Photo theBombPhoto;
     ImageView photoView;
+    ProgressBar loader;
 
     public SinglePhotoFragment() {
         // Required empty public constructor
@@ -50,6 +52,7 @@ public class SinglePhotoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         photoView = getActivity().findViewById(R.id.fullScreenImage);
+        loader = getActivity().findViewById(R.id.large_thumb_progress_bar);
         if(savedInstanceState!=null && savedInstanceState.containsKey(AppConstants.COMMON_CONSTANTS.PHOTO_PARCEL)){
             theBombPhoto = savedInstanceState.getParcelable(AppConstants.COMMON_CONSTANTS.PHOTO_PARCEL);
         }
@@ -66,9 +69,12 @@ public class SinglePhotoFragment extends Fragment {
 
             //ORIGINAL_IMAGE_SIZE
 
-            Picasso.with(getActivity()).load(urlToLoad).into(photoView, new Callback() {
+            Picasso.with(getActivity())
+                    .load(urlToLoad)
+                    .into(photoView, new Callback() {
                 @Override
                 public void onSuccess() {
+                    loader.setVisibility(View.GONE);
                     Log.d("loadImg","image loaded");
                 }
 
@@ -77,10 +83,7 @@ public class SinglePhotoFragment extends Fragment {
                     Log.d("loadImg","image loading error");
                 }
             });
-
         }
-
-
     }
 
     @Override

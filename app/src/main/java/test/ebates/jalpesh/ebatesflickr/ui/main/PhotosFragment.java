@@ -24,9 +24,7 @@ import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
 
 public class PhotosFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
 
@@ -49,12 +47,9 @@ public class PhotosFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-
-
     }
 
     MyPhotosRecyclerViewAdapter myPhotosRecyclerViewAdapter;
