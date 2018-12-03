@@ -1,5 +1,5 @@
 
-package test.ebates.jalpesh.ebatesflickr.models;
+package test.ebates.jalpesh.ebatesflickr.backendLayer.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,12 +17,12 @@ public class FlickrPhotoHolder {
         return photos;
     }
 
-    public void setPhotos(Photos photos) {
-        this.photos = photos;
+    public void setPhotos(Photos photos1) {
+        photos = photos1;
     }
 
-    public FlickrPhotoHolder withPhotos(Photos photos) {
-        this.photos = photos;
+    public FlickrPhotoHolder withPhotos(Photos photos1) {
+        photos = photos1;
         return this;
     }
 

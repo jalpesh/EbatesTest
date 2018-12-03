@@ -16,7 +16,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import test.ebates.jalpesh.ebatesflickr.R;
-import test.ebates.jalpesh.ebatesflickr.models.Photo;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.Photo;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 
 /**

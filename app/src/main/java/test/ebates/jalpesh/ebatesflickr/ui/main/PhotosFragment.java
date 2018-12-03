@@ -11,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import test.ebates.jalpesh.ebatesflickr.MainActivity;
 import test.ebates.jalpesh.ebatesflickr.R;
-import test.ebates.jalpesh.ebatesflickr.helpers.DataFetchHelper;
-import test.ebates.jalpesh.ebatesflickr.models.Photo;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.helpers.DataFetchHelper;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.Photo;
+import test.ebates.jalpesh.ebatesflickr.ui.MainActivity;
 
 public class PhotosFragment extends Fragment {
 

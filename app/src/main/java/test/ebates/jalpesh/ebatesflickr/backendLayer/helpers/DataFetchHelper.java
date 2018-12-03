@@ -1,4 +1,4 @@
-package test.ebates.jalpesh.ebatesflickr.helpers;
+package test.ebates.jalpesh.ebatesflickr.backendLayer.helpers;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,10 +8,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import test.ebates.jalpesh.ebatesflickr.MainApplication;
-import test.ebates.jalpesh.ebatesflickr.models.FlickrPhotoHolder;
-import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
-import test.ebates.jalpesh.ebatesflickr.services.ApiUtils;
-import test.ebates.jalpesh.ebatesflickr.services.FlickrApiInterface;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.FlickrPhotoHolder;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.RefreshDataEvent;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.services.ApiUtils;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.services.FlickrApiInterface;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 import test.ebates.jalpesh.ebatesflickr.utils.CommonSharedPref;
 

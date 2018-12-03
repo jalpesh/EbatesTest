@@ -1,4 +1,4 @@
-package test.ebates.jalpesh.ebatesflickr;
+package test.ebates.jalpesh.ebatesflickr.ui;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -12,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import de.greenrobot.event.EventBus;
-import test.ebates.jalpesh.ebatesflickr.helpers.DataFetchHelper;
-import test.ebates.jalpesh.ebatesflickr.models.Photo;
-import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
+import test.ebates.jalpesh.ebatesflickr.R;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.helpers.DataFetchHelper;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.Photo;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.RefreshDataEvent;
 import test.ebates.jalpesh.ebatesflickr.ui.main.PhotosFragment;
 import test.ebates.jalpesh.ebatesflickr.ui.main.SinglePhotoFragment;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;

@@ -1,4 +1,4 @@
-package test.ebates.jalpesh.ebatesflickr.services;
+package test.ebates.jalpesh.ebatesflickr.backendLayer.services;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

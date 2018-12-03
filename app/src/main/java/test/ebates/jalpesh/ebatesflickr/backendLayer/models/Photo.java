@@ -1,5 +1,5 @@
 
-package test.ebates.jalpesh.ebatesflickr.models;
+package test.ebates.jalpesh.ebatesflickr.backendLayer.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

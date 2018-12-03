@@ -1,5 +1,5 @@
 
-package test.ebates.jalpesh.ebatesflickr.models;
+package test.ebates.jalpesh.ebatesflickr.backendLayer.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

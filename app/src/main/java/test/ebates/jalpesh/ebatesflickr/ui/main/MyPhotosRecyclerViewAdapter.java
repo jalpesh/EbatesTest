@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import test.ebates.jalpesh.ebatesflickr.R;
-import test.ebates.jalpesh.ebatesflickr.models.Photo;
+import test.ebates.jalpesh.ebatesflickr.backendLayer.models.Photo;
 import test.ebates.jalpesh.ebatesflickr.ui.main.PhotosFragment.OnListFragmentInteractionListener;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 

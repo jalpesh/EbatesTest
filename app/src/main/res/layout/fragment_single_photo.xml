@@ -16,6 +16,7 @@
         android:id="@+id/large_thumb_progress_bar"
         android:layout_width="match_parent"
         android:layout_gravity="center"
+        android:layout_centerVertical="true"
         android:layout_height="match_parent" />
 
 </RelativeLayout>

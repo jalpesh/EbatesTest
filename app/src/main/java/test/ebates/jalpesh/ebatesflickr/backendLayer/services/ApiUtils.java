@@ -1,4 +1,4 @@
-package test.ebates.jalpesh.ebatesflickr.services;
+package test.ebates.jalpesh.ebatesflickr.backendLayer.services;
 
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 
