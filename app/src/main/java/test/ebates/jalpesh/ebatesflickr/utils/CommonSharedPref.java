@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class CommonSharedPref {
 
-    public static final String PREFS_STORAGE = "FLICKR_preference_file";
+    private static final String PREFS_STORAGE = "FLICKR_preference_file";
 
     private static SharedPreferences getPreferences(Context context) {
         int mode = Context.MODE_PRIVATE;

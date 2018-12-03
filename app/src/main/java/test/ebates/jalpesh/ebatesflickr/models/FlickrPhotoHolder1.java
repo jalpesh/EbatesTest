@@ -5,12 +5,12 @@ import android.os.Parcelable;
 
 public class FlickrPhotoHolder1 implements Parcelable{
 
-    long photoId;
-    String ownerId;
-    String secret;
-    int serverId;
-    int farmId;
-    String title;
+    private long photoId;
+    private String ownerId;
+    private String secret;
+    private int serverId;
+    private int farmId;
+    private String title;
 
     @Override
     public int describeContents() {
@@ -28,7 +28,7 @@ public class FlickrPhotoHolder1 implements Parcelable{
         dest.writeParcelable((Parcelable) this.CREATOR, flags);
     }
 
-    Creator<FlickrPhotoHolder1> CREATOR = new Creator<FlickrPhotoHolder1>() {
+    private final Creator<FlickrPhotoHolder1> CREATOR = new Creator<FlickrPhotoHolder1>() {
 
         @Override
         public FlickrPhotoHolder1 createFromParcel(Parcel source) {
@@ -40,57 +40,6 @@ public class FlickrPhotoHolder1 implements Parcelable{
             return new FlickrPhotoHolder1[size];
         }
     };
-
-    public FlickrPhotoHolder1() {
-    }
-
-    public long getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(long photoId) {
-        this.photoId = photoId;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public int getServerId() {
-        return serverId;
-    }
-
-    public void setServerId(int serverId) {
-        this.serverId = serverId;
-    }
-
-    public int getFarmId() {
-        return farmId;
-    }
-
-    public void setFarmId(int farmId) {
-        this.farmId = farmId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
 
 }

@@ -6,7 +6,7 @@ import android.content.Context;
 public class MainApplication extends Application {
 
 
-    static Context appContext;
+    private static Context appContext;
 
     public static Context getAppContext() {
         return appContext;
@@ -22,8 +22,11 @@ public class MainApplication extends Application {
 
     }
 
-    private void registerReceiversInApp() {
+    private void registerReceiversInApp(){
 
+        //Register network listner so that when network comes back, refersh the list.
+
+        //Register boot completed listner so that service can be run to fetch and keep latest data. Not current ly implementdd
     }
 
 }

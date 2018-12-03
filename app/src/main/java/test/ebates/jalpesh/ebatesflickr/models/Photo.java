@@ -3,7 +3,6 @@ package test.ebates.jalpesh.ebatesflickr.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Switch;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -51,7 +50,7 @@ public class Photo implements Parcelable {
     private String url_l;
 
 
-    protected Photo(Parcel in) {
+    private Photo(Parcel in) {
         id = in.readString();
         owner = in.readString();
         secret = in.readString();
@@ -78,7 +77,7 @@ public class Photo implements Parcelable {
         }
     };
 
-    public String getId() {
+    private String getId() {
         return id;
     }
 
@@ -104,7 +103,7 @@ public class Photo implements Parcelable {
         return this;
     }
 
-    public String getSecret() {
+    private String getSecret() {
         return secret;
     }
 
@@ -117,7 +116,7 @@ public class Photo implements Parcelable {
         return this;
     }
 
-    public String getServer() {
+    private String getServer() {
         return server;
     }
 
@@ -130,7 +129,7 @@ public class Photo implements Parcelable {
         return this;
     }
 
-    public long getFarm() {
+    private long getFarm() {
         return farm;
     }
 

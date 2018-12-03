@@ -2,7 +2,9 @@ package test.ebates.jalpesh.ebatesflickr;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +18,15 @@ import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
 import test.ebates.jalpesh.ebatesflickr.ui.main.PhotosFragment;
 import test.ebates.jalpesh.ebatesflickr.ui.main.SinglePhotoFragment;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
+import test.ebates.jalpesh.ebatesflickr.utils.CommonUtils;
 
 public class MainActivity extends AppCompatActivity  implements PhotosFragment.OnListFragmentInteractionListener  {
 
-    boolean imageIsHidden = false;
-    ImageView titleImageView;
+    private boolean imageIsHidden = false;
+    private ImageView titleImageView;
     private ValueAnimator mAnimator;
-    ProgressBar waitForLoader;
-    private String singlePhotoFragTag = "SINGLE_PIC_FRAG";
-    private String photoListingFragTag = "PIC_LISTING_FRAG";
+    private ProgressBar waitForLoader;
+    private final String singlePhotoFragTag = "SINGLE_PIC_FRAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,27 @@ public class MainActivity extends AppCompatActivity  implements PhotosFragment.O
             EventBus.getDefault().register(this);
         }
 
-        startDataFetch();
+        if(CommonUtils.checkWifiAndMobileConnection(this)){
+            startDataFetch();
+        } else {
+            internetNotFoundAlert();
+        }
     }
+
+    private void internetNotFoundAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(android.R.drawable.ic_dialog_alert).setMessage(R.string.unable_to_connect).setPositiveButton("Ok", activityFinishListner).show();
+    }
+
+    DialogInterface.OnClickListener activityFinishListner = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                finishAffinity();
+                finish();
+            }
+        }
+    };
 
     private void startDataFetch(){
         DataFetchHelper.getInstance(this).initServices();
@@ -61,6 +82,7 @@ public class MainActivity extends AppCompatActivity  implements PhotosFragment.O
     }
 
     private void showPhotosList() {
+        String photoListingFragTag = "PIC_LISTING_FRAG";
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, PhotosFragment.newInstance(1), photoListingFragTag)
                 .commitNow();
@@ -152,7 +174,7 @@ public class MainActivity extends AppCompatActivity  implements PhotosFragment.O
 
     @Override
     public void onBackPressed() {
-        if(getSupportFragmentManager().getFragments()!=null && getSupportFragmentManager().getFragments().size()>0 && getSupportFragmentManager().getFragments().get(0).getTag().equalsIgnoreCase(singlePhotoFragTag)){
+        if( getSupportFragmentManager().getFragments().size()>0 && getSupportFragmentManager().getFragments().get(0).getTag().equalsIgnoreCase(singlePhotoFragTag)){
             titleImageView.setVisibility(View.VISIBLE);
             startDataFetch();
             showPhotosList();

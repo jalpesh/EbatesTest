@@ -9,11 +9,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import test.ebates.jalpesh.ebatesflickr.MainApplication;
 import test.ebates.jalpesh.ebatesflickr.models.FlickrPhotoHolder;
-import test.ebates.jalpesh.ebatesflickr.models.Photo;
 import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
 import test.ebates.jalpesh.ebatesflickr.services.ApiUtils;
 import test.ebates.jalpesh.ebatesflickr.services.FlickrApiInterface;
-import test.ebates.jalpesh.ebatesflickr.ui.main.PhotosFragment;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 import test.ebates.jalpesh.ebatesflickr.utils.CommonSharedPref;
 
@@ -21,11 +19,10 @@ public class DataFetchHelper{
 
     private FlickrApiInterface flickrApiInterface = null;
     private static DataFetchHelper mInstance = null;
-    private Context mContext;
-    FlickrPhotoHolder localPhotosCache = new FlickrPhotoHolder();
+    private FlickrPhotoHolder localPhotosCache = new FlickrPhotoHolder();
 
     private DataFetchHelper(Context context){
-        mContext = context;
+        Context mContext = context;
     }
 
     public static DataFetchHelper getInstance(Context context){

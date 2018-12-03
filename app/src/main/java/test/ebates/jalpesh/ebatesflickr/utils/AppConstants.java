@@ -8,7 +8,7 @@ public class AppConstants {
 
     public static class API_CONSTANTS{
 
-        public static final String API_KEY = "fee10de350d1f31d5fec0eaf330d2dba";
+        static final String API_KEY = "fee10de350d1f31d5fec0eaf330d2dba";
 
         public static final String FLICKR_BASE_URL = "https://api.flickr.com/services/rest/";
 

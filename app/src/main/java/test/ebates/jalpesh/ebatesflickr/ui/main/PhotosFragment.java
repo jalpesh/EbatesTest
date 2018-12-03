@@ -1,26 +1,20 @@
 package test.ebates.jalpesh.ebatesflickr.ui.main;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import de.greenrobot.event.EventBus;
 import test.ebates.jalpesh.ebatesflickr.MainActivity;
 import test.ebates.jalpesh.ebatesflickr.R;
 import test.ebates.jalpesh.ebatesflickr.helpers.DataFetchHelper;
 import test.ebates.jalpesh.ebatesflickr.models.Photo;
-import test.ebates.jalpesh.ebatesflickr.models.RefreshDataEvent;
 
 public class PhotosFragment extends Fragment {
 
@@ -52,7 +46,7 @@ public class PhotosFragment extends Fragment {
         }
     }
 
-    MyPhotosRecyclerViewAdapter myPhotosRecyclerViewAdapter;
+    private MyPhotosRecyclerViewAdapter myPhotosRecyclerViewAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photos_list, container, false);
@@ -72,10 +66,6 @@ public class PhotosFragment extends Fragment {
             recyclerView.setAdapter(myPhotosRecyclerViewAdapter);
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                    super.onScrollStateChanged(recyclerView, newState);
-                }
 
                 @Override
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -124,11 +114,6 @@ public class PhotosFragment extends Fragment {
         void onListFragmentInteraction(Photo item);
     }
 
-    @Override
-    public void onDestroy() {
 
-        super.onDestroy();
-
-    }
 
 }

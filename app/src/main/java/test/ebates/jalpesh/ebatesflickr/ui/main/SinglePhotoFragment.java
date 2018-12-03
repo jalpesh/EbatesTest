@@ -1,8 +1,6 @@
 package test.ebates.jalpesh.ebatesflickr.ui.main;
 
 
-import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,9 +25,9 @@ import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 public class SinglePhotoFragment extends Fragment {
 
     ImageView fullScreenImage;
-    Photo theBombPhoto;
-    ImageView photoView;
-    ProgressBar loader;
+    private Photo theBombPhoto;
+    private ImageView photoView;
+    private ProgressBar loader;
 
     public SinglePhotoFragment() {
         // Required empty public constructor
@@ -86,9 +84,4 @@ public class SinglePhotoFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-    }
 }

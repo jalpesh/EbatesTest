@@ -12,19 +12,18 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import test.ebates.jalpesh.ebatesflickr.MainApplication;
+import java.util.List;
+
 import test.ebates.jalpesh.ebatesflickr.R;
 import test.ebates.jalpesh.ebatesflickr.models.Photo;
 import test.ebates.jalpesh.ebatesflickr.ui.main.PhotosFragment.OnListFragmentInteractionListener;
 import test.ebates.jalpesh.ebatesflickr.utils.AppConstants;
 
-import java.util.List;
-
 public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRecyclerViewAdapter.ViewHolder> {
 
     private final List<Photo> mValues;
     private final OnListFragmentInteractionListener mListener;
-    private Activity activityContext;
+    private final Activity activityContext;
 
     public MyPhotosRecyclerViewAdapter(List<Photo> items, OnListFragmentInteractionListener listener, Activity activity) {
         mValues = items;
@@ -75,13 +74,13 @@ public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final ImageView mIdView;
-        public final TextView mContentView;
-        public final ProgressBar loader;
-        public Photo mItem;
+        final View mView;
+        final ImageView mIdView;
+        final TextView mContentView;
+        final ProgressBar loader;
+        Photo mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (ImageView) view.findViewById(R.id.item_number);
