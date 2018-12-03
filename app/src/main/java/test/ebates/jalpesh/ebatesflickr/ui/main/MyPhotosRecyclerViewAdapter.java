@@ -47,6 +47,7 @@ public class MyPhotosRecyclerViewAdapter extends RecyclerView.Adapter<MyPhotosRe
                 .into(holder.mIdView, new Callback() {
                     @Override
                     public void onSuccess() {
+                        holder.mIdView.setVisibility(View.VISIBLE);
                         holder.loader.setVisibility(View.GONE);
                     }
 
