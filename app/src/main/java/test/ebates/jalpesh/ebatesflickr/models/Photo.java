@@ -40,6 +40,17 @@ public class Photo implements Parcelable {
     @Expose
     private long isfamily;
 
+    @SerializedName("url_m")
+    @Expose
+    private String url_m;
+    @SerializedName("url_o")
+    @Expose
+    private String url_o;
+    @SerializedName("url_l")
+    @Expose
+    private String url_l;
+
+
     protected Photo(Parcel in) {
         id = in.readString();
         owner = in.readString();
@@ -50,6 +61,9 @@ public class Photo implements Parcelable {
         ispublic = in.readLong();
         isfriend = in.readLong();
         isfamily = in.readLong();
+        url_m = in.readString();
+        url_o = in.readString();
+        url_l = in.readString();
     }
 
     public static final Creator<Photo> CREATOR = new Creator<Photo>() {
@@ -185,6 +199,31 @@ public class Photo implements Parcelable {
         return String.format(AppConstants.API_CONSTANTS.FLICKR_IMAGE_URL_CONSTRUCTOR, getFarm(), getServer(), getId(), getSecret(), imageSize);
     }
 
+
+    public String getUrl_m() {
+        return url_m;
+    }
+
+    public void setUrl_m(String url_m) {
+        this.url_m = url_m;
+    }
+
+    public String getUrl_o() {
+        return url_o;
+    }
+
+    public void setUrl_o(String url_o) {
+        this.url_o = url_o;
+    }
+
+    public String getUrl_l() {
+        return url_l;
+    }
+
+    public void setUrl_l(String url_l) {
+        this.url_l = url_l;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -201,5 +240,8 @@ public class Photo implements Parcelable {
         dest.writeLong(ispublic);
         dest.writeLong(isfriend);
         dest.writeLong(isfamily);
+        dest.writeString(url_m);
+        dest.writeString(url_o);
+        dest.writeString(url_l);
     }
 }

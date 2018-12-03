@@ -19,8 +19,8 @@ import test.ebates.jalpesh.ebatesflickr.utils.CommonSharedPref;
 
 public class DataFetchHelper{
 
-    FlickrApiInterface flickrApiInterface;
-    static DataFetchHelper mInstance = null;
+    private FlickrApiInterface flickrApiInterface = null;
+    private static DataFetchHelper mInstance = null;
     private Context mContext;
     FlickrPhotoHolder localPhotosCache = new FlickrPhotoHolder();
 
@@ -37,7 +37,9 @@ public class DataFetchHelper{
 
     public void initServices(){
         //Init service
-        flickrApiInterface = ApiUtils.getApiService();
+        if(flickrApiInterface==null){
+            flickrApiInterface = ApiUtils.getApiService();
+        }
 
         //Init local cache
 

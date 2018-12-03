@@ -12,7 +12,7 @@ public class AppConstants {
 
         public static final String FLICKR_BASE_URL = "https://api.flickr.com/services/rest/";
 
-        public static final String FLICKR_GET_RECENTS_URL = "?&method=flickr.photos.getRecent&api_key="+API_KEY+"&format=json&nojsoncallback=true";
+        public static final String FLICKR_GET_RECENTS_URL = "?&extras=url_m,url_l, geo&format=json&nojsoncallback=true&method=flickr.photos.getRecent&api_key="+API_KEY;
 
         //farm id :: server :: photoid :: secret :: size
         public static final String FLICKR_IMAGE_URL_CONSTRUCTOR = "https://farm%s.staticflickr.com/%s/%s_%s%s.jpg";
@@ -25,6 +25,7 @@ public class AppConstants {
         public static final String MEDIUM_IMAGE_SIZE = "_m";
         public static final String THUMBNAIL_IMAGE_SIZE = "_t";
         public static final String ORIGINAL_IMAGE_SIZE = "";
+        public static final String LARGE_IMAGE_SIZE = "_l";
 
     }
 

@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import test.ebates.jalpesh.ebatesflickr.R;
@@ -53,7 +55,29 @@ public class SinglePhotoFragment extends Fragment {
         }
 
         if(theBombPhoto!=null){
-            Picasso.with(getActivity()).load(theBombPhoto.getPhotoUrl(AppConstants.IMAGE_SIZE_CONSTANTS.ORIGINAL_IMAGE_SIZE)).into(photoView);
+
+            //Get default photo URL
+            String urlToLoad = theBombPhoto.getPhotoUrl(AppConstants.IMAGE_SIZE_CONSTANTS.ORIGINAL_IMAGE_SIZE);
+
+            //Load large image if returned in extras.
+            if(theBombPhoto.getUrl_l()!=null && !theBombPhoto.getUrl_l().isEmpty()){
+                urlToLoad = theBombPhoto.getUrl_l();
+            }
+
+            //ORIGINAL_IMAGE_SIZE
+
+            Picasso.with(getActivity()).load(urlToLoad).into(photoView, new Callback() {
+                @Override
+                public void onSuccess() {
+                    Log.d("loadImg","image loaded");
+                }
+
+                @Override
+                public void onError() {
+                    Log.d("loadImg","image loading error");
+                }
+            });
+
         }
 
 

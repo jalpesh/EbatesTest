@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity  implements PhotosFragment.O
     ImageView titleImageView;
     private ValueAnimator mAnimator;
     ProgressBar waitForLoader;
+    private String singlePhotoFragTag = "SINGLE_PIC_FRAG";
+    private String photoListingFragTag = "PIC_LISTING_FRAG";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +57,12 @@ public class MainActivity extends AppCompatActivity  implements PhotosFragment.O
         waitForLoader.setVisibility(View.GONE);
         this.findViewById(R.id.container).setVisibility(View.VISIBLE);
 
+        showPhotosList();
+    }
+
+    private void showPhotosList() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, PhotosFragment.newInstance(1))
+                .replace(R.id.container, PhotosFragment.newInstance(1), photoListingFragTag)
                 .commitNow();
     }
 
@@ -128,24 +135,29 @@ public class MainActivity extends AppCompatActivity  implements PhotosFragment.O
 
     @Override
     public void onListFragmentInteraction(Photo item) {
-
         LaunchSingleView(item);
-
     }
 
     public void LaunchSingleView(Photo item){
+        titleImageView.setVisibility(View.GONE);
         SinglePhotoFragment singlePhotoFragment = new SinglePhotoFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.COMMON_CONSTANTS.PHOTO_PARCEL, item);
         singlePhotoFragment.setArguments(bundle);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, singlePhotoFragment)
+                .replace(R.id.container, singlePhotoFragment,singlePhotoFragTag)
                 .commitAllowingStateLoss();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if(getSupportFragmentManager().getFragments()!=null && getSupportFragmentManager().getFragments().size()>0 && getSupportFragmentManager().getFragments().get(0).getTag().equalsIgnoreCase(singlePhotoFragTag)){
+            titleImageView.setVisibility(View.VISIBLE);
+            startDataFetch();
+            showPhotosList();
+        }else {
+            super.onBackPressed();
+        }
     }
 }
